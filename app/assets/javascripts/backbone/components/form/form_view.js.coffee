@@ -14,14 +14,13 @@
       buttonContainer: 'ul.inline-list'
 
     serializeData: ->
-      console.log @options.buttons
       footer: @options.config.footer
-      buttons: @options.buttons.toJSON()
+      buttons: @options.buttons?.toJSON() ? false
 
     onShow: ->
       _.defer =>
         @focusFirstInput() if @options.config.focusFirstInput
-        @buttonsPlacement()
+        @buttonsPlacement() if @options.buttons
 
     focusFirstInput: ->
       @$(':input:visible:enabled:first').focus()
